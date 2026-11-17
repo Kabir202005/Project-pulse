@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>AI Estimator - Project Pulse</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-secondary": "#003824",
+                                                "surface-container-low": "#191b23",
+                                                "error-container": "#93000a",
+                                                "primary-fixed-dim": "#adc6ff",
+                                                "on-error": "#690005",
+                                                "surface-bright": "#363941",
+                                                "secondary": "#4edea3",
+                                                "on-tertiary": "#472a00",
+                                                "on-tertiary-fixed-variant": "#653e00",
+                                                "outline": "#8c909f",
+                                                "surface-container-high": "#272a31",
+                                                "on-primary": "#002e6a",
+                                                "surface-container": "#1d2027",
+                                                "inverse-on-surface": "#2e3038",
+                                                "on-background": "#e1e2ec",
+                                                "inverse-surface": "#e1e2ec",
+                                                "on-primary-fixed": "#001a42",
+                                                "primary-container": "#4d8eff",
+                                                "surface-variant": "#32353c",
+                                                "surface-container-highest": "#32353c",
+                                                "on-secondary-fixed": "#002113",
+                                                "surface-dim": "#10131a",
+                                                "on-secondary-container": "#00311f",
+                                                "error": "#ffb4ab",
+                                                "surface-tint": "#adc6ff",
+                                                "primary": "#adc6ff",
+                                                "on-tertiary-fixed": "#2a1700",
+                                                "tertiary": "#ffb95f",
+                                                "on-tertiary-container": "#3e2400",
+                                                "outline-variant": "#424754",
+                                                "tertiary-fixed-dim": "#ffb95f",
+                                                "on-error-container": "#ffdad6",
+                                                "background": "#10131a",
+                                                "primary-fixed": "#d8e2ff",
+                                                "on-surface": "#e1e2ec",
+                                                "on-surface-variant": "#c2c6d6",
+                                                "surface": "#10131a",
+                                                "surface-container-lowest": "#0b0e15",
+                                                "tertiary-container": "#ca8100",
+                                                "on-primary-container": "#00285d",
+                                                "on-primary-fixed-variant": "#004395",
+                                                "tertiary-fixed": "#ffddb8",
+                                                "inverse-primary": "#005ac2",
+                                                "secondary-fixed": "#6ffbbe",
+                                                "secondary-container": "#00a572",
+                                                "secondary-fixed-dim": "#4edea3",
+                                                "on-secondary-fixed-variant": "#005236"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "card-gap": "20px",
+                                                "gutter": "16px",
+                                                "container-padding": "24px",
+                                                "sidebar-width": "260px",
+                                                "unit": "4px"
+                                        },
+                                        "fontFamily": {
+                                                "code-sm": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Geist"
+                                                ],
+                                                "title-md": [
+                                                        "Geist"
+                                                ],
+                                                "label-md": [
+                                                        "Geist"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ],
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "display-lg": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg": [
+                                                        "Geist"
+                                                ],
+                                                "headline-md": [
+                                                        "Geist"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "code-sm": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "32px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "title-md": [
+                                                        "18px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "20px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "56px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "40px",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "32px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                .blueprint-grid {
+                        background-image:
+                                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+                        background-size: 40px 40px;
+                }
+
+                .glass-panel {
+                        background: rgba(26, 29, 35, 0.6);
+                        backdrop-filter: blur(20px);
+                        -webkit-backdrop-filter: blur(20px);
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                }
+
+                .glass-panel-hover:hover {
+                        border-color: rgba(173, 198, 255, 0.3);
+                        box-shadow: 0 0 20px rgba(173, 198, 255, 0.05);
+                }
+
+                /* Custom scrollbar for dark theme */
+                ::-webkit-scrollbar {
+                        width: 6px;
+                        height: 6px;
+                }
+
+                ::-webkit-scrollbar-track {
+                        background: #10131a;
+                }
+
+                ::-webkit-scrollbar-thumb {
+                        background: #32353c;
+                        border-radius: 4px;
+                }
+
+                ::-webkit-scrollbar-thumb:hover {
+                        background: #8c909f;
+                }
+        </style>
+</head>
+
+<body
+        class="bg-background text-on-surface font-body-md min-h-screen flex overflow-x-hidden selection:bg-primary selection:text-on-primary">
+        <!-- Ambient Background Effects -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+                <div class="blueprint-grid absolute inset-0 w-full h-full"></div>
+                <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px]">
+                </div>
+        </div>
+        <!-- SideNavBar -->
+        <nav
+                class="bg-surface-container-low dark:bg-surface-container-low text-primary dark:text-primary font-title-md text-title-md docked left-0 w-[260px] h-screen border-r border-white/5 flat no shadows flex flex-col fixed left-0 top-0 z-40">
+                <div class="p-6 border-b border-white/5 flex items-center gap-4">
+                        <div
+                                class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center border border-primary/30 flex-shrink-0">
+                                <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+                        </div>
+                        <div class="overflow-hidden">
+                                <h1
+                                        class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface truncate">
+                                        PROJECT PULSE</h1>
+                                <p class="font-code-sm text-code-sm text-outline truncate uppercase tracking-widest">
+                                        Construction Intelligence</p>
+                        </div>
+                </div>
+                <div class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">database</span>
+                                <span>Data Center</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                                <span>Executive Dashboard</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">insights</span>
+                                <span>Performance &amp; Drivers</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">monitoring</span>
+                                <span>Interactive Visualizations</span>
+                        </a>
+                        <!-- Active State -->
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded text-primary font-bold border-l-4 border-primary bg-primary/10 transition-transform scale-95"
+                                href="#">
+                                <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">psychology</span>
+                                <span>AI Estimator</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">precision_manufacturing</span>
+                                <span>Smart Resource Optimizer</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">query_stats</span>
+                                <span>Sensitivity / What-If</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">compare_arrows</span>
+                                <span>Project Comparison</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-white/5 hover:text-on-surface transition-colors text-on-surface-variant font-body-md text-body-md"
+                                href="#">
+                                <span class="material-symbols-outlined text-outline"
+                                        style="font-variation-settings: 'FILL' 0;">assessment</span>
+                                <span>Business Report</span>
+                        </a>
+                </div>
+                <div class="p-4 border-t border-white/5 flex flex-col gap-2">
+                        <button
+                                class="w-full bg-primary text-on-primary font-label-md text-label-md py-2.5 rounded hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">bolt</span>
+                                Optimize Project
+                        </button>
+                        <div class="mt-4 flex flex-col gap-1">
+                                <div class="flex items-center gap-3 px-2 py-1.5 text-outline font-code-sm text-code-sm">
+                                        <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                                        <span>Dataset: 3k Projects</span>
+                                </div>
+                                <div class="flex items-center gap-3 px-2 py-1.5 text-outline font-code-sm text-code-sm">
+                                        <span class="material-symbols-outlined text-[16px]">memory</span>
+                                        <span>Model: Ready</span>
+                                </div>
+                                <button
+                                        class="flex items-center gap-3 px-2 py-1.5 text-on-surface-variant hover:text-primary transition-colors font-code-sm text-code-sm rounded hover:bg-white/5 w-full text-left">
+                                        <span class="material-symbols-outlined text-[16px]">settings</span>
+                                        <span>User Settings</span>
+                                </button>
+                        </div>
+                </div>
+        </nav>
+        <!-- Main Content Wrapper -->
+        <div class="flex-1 flex flex-col ml-[260px] max-w-[calc(100%-260px)] min-h-screen relative z-10">
+                <!-- TopNavBar -->
+                <header
+                        class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl text-primary dark:text-primary font-body-md text-body-md docked top-0 w-full border-b border-white/5 flat no shadows flex justify-between items-center px-container-padding h-16 sticky top-0 z-50">
+                        <div class="flex items-center gap-8">
+                                <!-- Search on left -->
+                                <div class="relative group hidden lg:block">
+                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors pointer-events-none"
+                                                style="font-size: 20px;">search</span>
+                                        <input class="bg-surface-container-high border border-white/10 rounded-full py-1.5 pl-10 pr-4 text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 w-64 transition-all placeholder:text-outline/50"
+                                                placeholder="Search projects, models..." type="text" />
+                                </div>
+                                <div class="hidden md:flex items-center gap-6">
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#">Dashboard</a>
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#">Analytics</a>
+                                        <!-- Active State Nav Link if needed, though this page is Estimator -->
+                                        <a class="text-primary font-bold border-b-2 border-primary pb-1 opacity-80 hover:text-primary transition-colors"
+                                                href="#">AI Tools</a>
+                                </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                                <button
+                                        class="hidden lg:flex items-center justify-center px-4 py-1.5 border border-white/10 rounded hover:bg-white/5 text-on-surface transition-colors font-label-md text-label-md uppercase tracking-wider">
+                                        Optimize
+                                </button>
+                                <div class="w-px h-6 bg-white/10 hidden lg:block"></div>
+                                <div class="flex items-center gap-2">
+                                        <button
+                                                class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-white/5">
+                                                <span class="material-symbols-outlined">notifications</span>
+                                        </button>
+                                        <button
+                                                class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-white/5">
+                                                <span class="material-symbols-outlined">help_outline</span>
+                                        </button>
+                                        <button
+                                                class="w-8 h-8 rounded-full bg-surface-container-high border border-white/10 overflow-hidden ml-2">
+                                                <span class="material-symbols-outlined text-outline translate-y-[2px]"
+                                                        style="font-size: 30px;">account_circle</span>
+                                        </button>
+                                </div>
+                        </div>
+                </header>
+                <!-- Main Canvas -->
+                <main class="flex-1 p-container-padding flex flex-col gap-card-gap pb-32">
+                        <!-- Page Header -->
+                        <div class="flex flex-col gap-2 mb-4">
+                                <h2 class="font-display-lg text-display-lg text-on-surface">AI Estimator</h2>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Predict project
+                                        cost and duration using machine learning algorithms trained on historical
+                                        construction data.</p>
+                        </div>
+                        <!-- Top Row: Model Status & KPIs -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-card-gap">
+                                <!-- Model Status Card (3 cols) -->
+                                <div
+                                        class="glass-panel rounded-xl p-6 lg:col-span-3 flex flex-col gap-4 relative overflow-hidden group">
+                                        <div
+                                                class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-[40px] -mr-10 -mt-10 group-hover:bg-secondary/20 transition-all duration-500">
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-2">
+                                                        <span class="material-symbols-outlined text-secondary"
+                                                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                                        <span
+                                                                class="font-label-md text-label-md text-secondary tracking-widest uppercase">Model
+                                                                Ready</span>
+                                                </div>
+                                                <span
+                                                        class="font-code-sm text-code-sm text-outline bg-surface-container py-1 px-2 rounded">v2.4</span>
+                                        </div>
+                                        <div class="mt-auto pt-8">
+                                                <div class="flex flex-col gap-3">
+                                                        <div
+                                                                class="flex justify-between items-baseline border-b border-white/5 pb-2">
+                                                                <span class="font-body-sm text-outline">Last
+                                                                        Trained</span>
+                                                                <span class="font-code-sm text-code-sm text-on-surface">Today,
+                                                                        08:42 AM</span>
+                                                        </div>
+                                                        <div class="flex justify-between items-baseline">
+                                                                <span class="font-body-sm text-outline">Training
+                                                                        Dataset</span>
+                                                                <span class="font-code-sm text-code-sm text-on-surface">3,000
+                                                                        Projects</span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                                <!-- Performance KPIs (9 cols) -->
+                                <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-card-gap">
+                                        <!-- Cost Model KPI -->
+                                        <div
+                                                class="glass-panel rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden">
+                                                <div
+                                                        class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50">
+                                                </div>
+                                                <div class="flex items-center gap-3 mb-2 relative z-10">
+                                                        <span
+                                                                class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded">payments</span>
+                                                        <h3 class="font-title-md text-title-md text-on-surface">Cost
+                                                                Model Performance</h3>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-4 mt-2 relative z-10">
+                                                        <div class="flex flex-col">
+                                                                <span
+                                                                        class="font-code-sm text-code-sm text-outline mb-1 uppercase tracking-wider">R²
+                                                                        Score</span>
+                                                                <span
+                                                                        class="font-headline-md text-headline-md text-on-surface">0.94</span>
+                                                                <div
+                                                                        class="w-full bg-surface-container h-1 mt-2 rounded-full overflow-hidden">
+                                                                        <div class="bg-primary h-full w-[94%]"></div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                                <span
+                                                                        class="font-code-sm text-code-sm text-outline mb-1 uppercase tracking-wider">MAPE</span>
+                                                                <span
+                                                                        class="font-headline-md text-headline-md text-on-surface">4.2<span
+                                                                                class="text-title-md text-on-surface-variant">%</span></span>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                                <span
+                                                                        class="font-code-sm text-code-sm text-outline mb-1 uppercase tracking-wider">MAE</span>
+                                                                <span
+                                                                        class="font-headline-md text-headline-md text-on-surface"><span
+                                                                                class="text-title-md text-on-surface-variant">₹</span>12k</span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- Duration Model KPI -->
+                                        <div
+                                                class="glass-panel rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden">
+                                                <div
+                                                        class="absolute inset-0 bg-gradient-to-br from-tertiary/5 to-transparent opacity-50">
+                                                </div>
+                                                <div class="flex items-center gap-3 mb-2 relative z-10">
+                                                        <span
+                                                                class="material-symbols-outlined text-tertiary bg-tertiary/10 p-2 rounded">schedule</span>
+                                                        <h3 class="font-title-md text-title-md text-on-surface">Duration
+                                                                Model Performance</h3>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-4 mt-2 relative z-10">
+                                                        <div class="flex flex-col">
+                                                                <span
+                                                                        class="font-code-sm text-code-sm text-outline mb-1 uppercase tracking-wider">R²
+                                                                        Score</span>
+                                                                <span
+                                                                        class="font-headline-md text-headline-md text-on-surface">0.88</span>
+                                                                <div
+                                                                        class="w-full bg-surface-container h-1 mt-2 rounded-full overflow-hidden">
+                                                                        <div class="bg-tertiary h-full w-[88%]"></div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                                <span
+                                                                        class="font-code-sm text-code-sm text-outline mb-1 uppercase tracking-wider">MAPE</span>
+                                                                <span
+                                                                        class="font-headline-md text-headline-md text-on-surface">6.1<span
+                                                                                class="text-title-md text-on-surface-variant">%</span></span>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                                <span
+                                                                        class="font-code-sm text-code-sm text-outline mb-1 uppercase tracking-wider">MAE</span>
+                                                                <span
+                                                                        class="font-headline-md text-headline-md text-on-surface">14
+                                                                        <span
+                                                                                class="text-title-md text-on-surface-variant">days</span></span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- Form and Results Row -->
+                        <div class="grid grid-cols-1 xl:grid-cols-12 gap-card-gap">
+                                <!-- Project Prediction Form (8 cols) -->
+                                <div class="glass-panel rounded-xl p-6 xl:col-span-8 flex flex-col">
+                                        <div
+                                                class="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                                                <h3
+                                                        class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+                                                        <span class="material-symbols-outlined text-primary">tune</span>
+                                                        Project Parameters
+                                                </h3>
+                                                <button
+                                                        class="text-outline hover:text-primary transition-colors text-code-sm font-code-sm uppercase tracking-wider flex items-center gap-1">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">restart_alt</span>
+                                                        Reset
+                                                </button>
+                                        </div>
+                                        <form class="flex flex-col gap-8 flex-1">
+                                                <!-- Categorical Inputs -->
+                                                <div>
+                                                        <h4
+                                                                class="font-label-md text-label-md text-outline mb-4 uppercase tracking-widest">
+                                                                Categorical Drivers</h4>
+                                                        <div
+                                                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Project
+                                                                                Type</label>
+                                                                        <select
+                                                                                class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md py-2 px-3 appearance-none">
+                                                                                <option>Commercial Tower</option>
+                                                                                <option>Residential Complex</option>
+                                                                                <option>Industrial Facility</option>
+                                                                                <option>Infrastructure</option>
+                                                                        </select>
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Terrain
+                                                                                Classification</label>
+                                                                        <select
+                                                                                class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md py-2 px-3 appearance-none">
+                                                                                <option>Urban Density (High)</option>
+                                                                                <option>Urban Density (Low)</option>
+                                                                                <option>Suburban Greenfield</option>
+                                                                                <option>Challenging Topography</option>
+                                                                        </select>
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Region
+                                                                                / Market</label>
+                                                                        <select
+                                                                                class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md py-2 px-3 appearance-none">
+                                                                                <option>North America (East)</option>
+                                                                                <option>North America (West)</option>
+                                                                                <option>Europe (Central)</option>
+                                                                                <option>APAC</option>
+                                                                        </select>
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Design
+                                                                                Complexity</label>
+                                                                        <select
+                                                                                class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md py-2 px-3 appearance-none">
+                                                                                <option>Standard</option>
+                                                                                <option selected="">High (Custom)
+                                                                                </option>
+                                                                                <option>Avant-Garde</option>
+                                                                        </select>
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Start
+                                                                                Season</label>
+                                                                        <select
+                                                                                class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md py-2 px-3 appearance-none">
+                                                                                <option>Spring</option>
+                                                                                <option>Summer</option>
+                                                                                <option>Autumn</option>
+                                                                                <option>Winter</option>
+                                                                        </select>
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Weather
+                                                                                Risk Profile</label>
+                                                                        <select
+                                                                                class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md py-2 px-3 appearance-none">
+                                                                                <option>Low</option>
+                                                                                <option selected="">Moderate</option>
+                                                                                <option>Severe</option>
+                                                                        </select>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <!-- Numerical Inputs -->
+                                                <div>
+                                                        <h4
+                                                                class="font-label-md text-label-md text-outline mb-4 uppercase tracking-widest">
+                                                                Numerical Variables</h4>
+                                                        <div
+                                                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Land
+                                                                                Area (sqm)</label>
+                                                                        <input class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-code-sm py-2 px-3"
+                                                                                type="number" value="15000" />
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Floors
+                                                                                (Above Ground)</label>
+                                                                        <input class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-code-sm py-2 px-3"
+                                                                                type="number" value="42" />
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Peak
+                                                                                Labor Count</label>
+                                                                        <input class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-code-sm py-2 px-3"
+                                                                                type="number" value="350" />
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Heavy
+                                                                                Equipment Req.</label>
+                                                                        <div class="flex items-center gap-2">
+                                                                                <input class="w-full accent-primary"
+                                                                                        max="10" min="1" type="range"
+                                                                                        value="7" />
+                                                                                <span
+                                                                                        class="font-code-sm text-on-surface w-4">7</span>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">Material
+                                                                                Cost Index</label>
+                                                                        <input class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-code-sm py-2 px-3"
+                                                                                step="0.1" type="number"
+                                                                                value="112.4" />
+                                                                </div>
+                                                                <div class="flex flex-col gap-1.5">
+                                                                        <label
+                                                                                class="font-code-sm text-code-sm text-on-surface-variant">GC
+                                                                                Experience (Years)</label>
+                                                                        <input class="bg-surface-container-high border border-white/10 text-on-surface rounded focus:ring-1 focus:ring-primary focus:border-primary font-code-sm py-2 px-3"
+                                                                                type="number" value="25" />
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="mt-auto pt-6 border-t border-white/5 flex justify-end">
+                                                        <button class="bg-primary text-on-primary font-label-md text-label-md py-3 px-8 rounded hover:bg-primary-fixed transition-all hover:shadow-[0_0_20px_rgba(173,198,255,0.3)] uppercase tracking-wide flex items-center gap-2"
+                                                                type="button">
+                                                                <span
+                                                                        class="material-symbols-outlined">auto_awesome</span>
+                                                                Generate Prediction
+                                                        </button>
+                                                </div>
+                                        </form>
+                                </div>
+                                <!-- Prediction Results (4 cols) -->
+                                <div class="xl:col-span-4 flex flex-col gap-card-gap">
+                                        <!-- Result Card: Cost -->
+                                        <div
+                                                class="glass-panel rounded-xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden flex-1 border-t-2 border-t-primary">
+                                                <div
+                                                        class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none">
+                                                </div>
+                                                <span
+                                                        class="font-label-md text-label-md text-primary mb-2 uppercase tracking-widest flex items-center gap-1">
+                                                        Predicted Final Cost
+                                                </span>
+                                                <div
+                                                        class="font-display-lg text-display-lg text-on-surface mb-2 tracking-tight">
+                                                        ₹42,850,000
+                                                </div>
+                                                <div
+                                                        class="flex items-center gap-2 bg-error/10 text-error px-3 py-1 rounded-full font-code-sm text-code-sm mt-4 border border-error/20">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">trending_up</span>
+                                                        <span>+₹2.1M vs Baseline</span>
+                                                </div>
+                                        </div>
+                                        <!-- Result Card: Duration -->
+                                        <div
+                                                class="glass-panel rounded-xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden flex-1 border-t-2 border-t-tertiary">
+                                                <div
+                                                        class="absolute inset-0 bg-gradient-to-b from-tertiary/10 to-transparent pointer-events-none">
+                                                </div>
+                                                <span
+                                                        class="font-label-md text-label-md text-tertiary mb-2 uppercase tracking-widest flex items-center gap-1">
+                                                        Predicted Duration
+                                                </span>
+                                                <div
+                                                        class="font-display-lg text-display-lg text-on-surface mb-2 tracking-tight">
+                                                        842 <span
+                                                                class="text-headline-md text-on-surface-variant font-normal">Days</span>
+                                                </div>
+                                                <div
+                                                        class="flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-1 rounded-full font-code-sm text-code-sm mt-4 border border-secondary/20">
+                                                        <span
+                                                                class="material-symbols-outlined text-[16px]">trending_down</span>
+                                                        <span>-14 Days vs Baseline</span>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <!-- Explainability Section (SHAP) -->
+                        <div class="glass-panel rounded-xl p-6 flex flex-col">
+                                <div class="flex items-center justify-between mb-8">
+                                        <div>
+                                                <h3 class="font-headline-md text-headline-md text-on-surface">Why did
+                                                        the model predict this?</h3>
+                                                <p class="font-body-md text-on-surface-variant mt-1">SHAP (SHapley
+                                                        Additive exPlanations) values showing impact on output</p>
+                                        </div>
+                                        <div class="flex gap-4 items-center">
+                                                <div
+                                                        class="flex items-center gap-2 font-code-sm text-code-sm text-outline">
+                                                        <div class="w-3 h-3 rounded bg-error"></div> Increases Value
+                                                </div>
+                                                <div
+                                                        class="flex items-center gap-2 font-code-sm text-code-sm text-outline">
+                                                        <div class="w-3 h-3 rounded bg-secondary"></div> Decreases Value
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                        <!-- Cost Drivers -->
+                                        <div>
+                                                <h4
+                                                        class="font-label-md text-label-md text-primary mb-6 uppercase tracking-widest border-b border-white/5 pb-2">
+                                                        Top Cost Drivers</h4>
+                                                <div class="flex flex-col gap-4">
+                                                        <!-- Bar 1 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Design Complexity</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 pl-4 py-2 relative">
+                                                                        <!-- Base line -->
+                                                                        <div
+                                                                                class="absolute left-4 top-0 bottom-0 w-px bg-white/20 z-0 hidden">
+                                                                        </div>
+                                                                        <!-- Positive bar (goes right) -->
+                                                                        <div class="h-4 bg-error/80 rounded-r z-10"
+                                                                                style="width: 65%;"></div>
+                                                                        <span
+                                                                                class="ml-2 font-code-sm text-error/80 opacity-0 group-hover:opacity-100 transition-opacity">+₹1.4M</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Bar 2 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Material Cost Index</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 pl-4 py-2 relative">
+                                                                        <div class="h-4 bg-error/80 rounded-r z-10"
+                                                                                style="width: 45%;"></div>
+                                                                        <span
+                                                                                class="ml-2 font-code-sm text-error/80 opacity-0 group-hover:opacity-100 transition-opacity">+₹850k</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Bar 3 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        GC Experience</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 relative h-8">
+                                                                        <!-- Negative bar (offset left conceptually, but implemented visually relative to 0) -->
+                                                                        <div class="absolute left-4 h-4 bg-secondary/80 rounded-l z-10 -ml-[25%]"
+                                                                                style="width: 25%;"></div>
+                                                                        <span
+                                                                                class="absolute left-4 -ml-[35%] font-code-sm text-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity">-₹420k</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Bar 4 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Terrain: Urban High</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 pl-4 py-2 relative">
+                                                                        <div class="h-4 bg-error/80 rounded-r z-10"
+                                                                                style="width: 20%;"></div>
+                                                                        <span
+                                                                                class="ml-2 font-code-sm text-error/80 opacity-0 group-hover:opacity-100 transition-opacity">₹310k</span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- Schedule Drivers -->
+                                        <div>
+                                                <h4
+                                                        class="font-label-md text-label-md text-tertiary mb-6 uppercase tracking-widest border-b border-white/5 pb-2">
+                                                        Top Schedule Drivers</h4>
+                                                <div class="flex flex-col gap-4">
+                                                        <!-- Bar 1 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Floors (Above)</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 pl-4 py-2 relative">
+                                                                        <div class="h-4 bg-error/80 rounded-r z-10"
+                                                                                style="width: 55%;"></div>
+                                                                        <span
+                                                                                class="ml-2 font-code-sm text-error/80 opacity-0 group-hover:opacity-100 transition-opacity">+45
+                                                                                Days</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Bar 2 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Peak Labor Count</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 relative h-8">
+                                                                        <div class="absolute left-4 h-4 bg-secondary/80 rounded-l z-10 -ml-[40%]"
+                                                                                style="width: 40%;"></div>
+                                                                        <span
+                                                                                class="absolute left-4 -ml-[55%] font-code-sm text-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity">-32
+                                                                                Days</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Bar 3 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Weather Risk</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 pl-4 py-2 relative">
+                                                                        <div class="h-4 bg-error/80 rounded-r z-10"
+                                                                                style="width: 30%;"></div>
+                                                                        <span
+                                                                                class="ml-2 font-code-sm text-error/80 opacity-0 group-hover:opacity-100 transition-opacity">+18
+                                                                                Days</span>
+                                                                </div>
+                                                        </div>
+                                                        <!-- Bar 4 -->
+                                                        <div class="flex items-center gap-4 group">
+                                                                <div
+                                                                        class="w-32 text-right font-code-sm text-code-sm text-on-surface-variant truncate group-hover:text-on-surface transition-colors">
+                                                                        Heavy Equip Req.</div>
+                                                                <div
+                                                                        class="flex-1 flex items-center border-l border-white/20 relative h-8">
+                                                                        <div class="absolute left-4 h-4 bg-secondary/80 rounded-l z-10 -ml-[15%]"
+                                                                                style="width: 15%;"></div>
+                                                                        <span
+                                                                                class="absolute left-4 -ml-[25%] font-code-sm text-secondary/80 opacity-0 group-hover:opacity-100 transition-opacity">-9
+                                                                                Days</span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </main>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Performance &amp; Driver Analysis - Project Pulse</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-secondary": "#003824",
+                                                "surface-container-low": "#191b23",
+                                                "error-container": "#93000a",
+                                                "primary-fixed-dim": "#adc6ff",
+                                                "on-error": "#690005",
+                                                "surface-bright": "#363941",
+                                                "secondary": "#4edea3",
+                                                "on-tertiary": "#472a00",
+                                                "on-tertiary-fixed-variant": "#653e00",
+                                                "outline": "#8c909f",
+                                                "surface-container-high": "#272a31",
+                                                "on-primary": "#002e6a",
+                                                "surface-container": "#1d2027",
+                                                "inverse-on-surface": "#2e3038",
+                                                "on-background": "#e1e2ec",
+                                                "inverse-surface": "#e1e2ec",
+                                                "on-primary-fixed": "#001a42",
+                                                "primary-container": "#4d8eff",
+                                                "surface-variant": "#32353c",
+                                                "surface-container-highest": "#32353c",
+                                                "on-secondary-fixed": "#002113",
+                                                "surface-dim": "#10131a",
+                                                "on-secondary-container": "#00311f",
+                                                "error": "#ffb4ab",
+                                                "surface-tint": "#adc6ff",
+                                                "primary": "#adc6ff",
+                                                "on-tertiary-fixed": "#2a1700",
+                                                "tertiary": "#ffb95f",
+                                                "on-tertiary-container": "#3e2400",
+                                                "outline-variant": "#424754",
+                                                "tertiary-fixed-dim": "#ffb95f",
+                                                "on-error-container": "#ffdad6",
+                                                "background": "#10131a",
+                                                "primary-fixed": "#d8e2ff",
+                                                "on-surface": "#e1e2ec",
+                                                "on-surface-variant": "#c2c6d6",
+                                                "surface": "#10131a",
+                                                "surface-container-lowest": "#0b0e15",
+                                                "tertiary-container": "#ca8100",
+                                                "on-primary-container": "#00285d",
+                                                "on-primary-fixed-variant": "#004395",
+                                                "tertiary-fixed": "#ffddb8",
+                                                "inverse-primary": "#005ac2",
+                                                "secondary-fixed": "#6ffbbe",
+                                                "secondary-container": "#00a572",
+                                                "secondary-fixed-dim": "#4edea3",
+                                                "on-secondary-fixed-variant": "#005236"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "card-gap": "20px",
+                                                "gutter": "16px",
+                                                "container-padding": "24px",
+                                                "sidebar-width": "260px",
+                                                "unit": "4px"
+                                        },
+                                        "fontFamily": {
+                                                "code-sm": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Geist"
+                                                ],
+                                                "title-md": [
+                                                        "Geist"
+                                                ],
+                                                "label-md": [
+                                                        "Geist"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ],
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "display-lg": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg": [
+                                                        "Geist"
+                                                ],
+                                                "headline-md": [
+                                                        "Geist"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "code-sm": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "32px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "title-md": [
+                                                        "18px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "20px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "56px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "40px",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "32px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                .glass-card {
+                        background-color: rgba(26, 29, 35, 0.6);
+                        backdrop-filter: blur(20px);
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                }
+
+                .blueprint-bg {
+                        background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+                        background-size: 40px 40px;
+                }
+        </style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased blueprint-bg min-h-screen flex">
+        <!-- SideNavBar -->
+        <aside
+                class="bg-surface-container-low text-primary font-title-md docked left-0 w-[260px] h-screen border-r border-white/5 flex flex-col h-full w-[260px] fixed left-0 top-0 z-40 hidden md:flex">
+                <div class="p-container-padding flex flex-col gap-2">
+                        <h1 class="font-headline-md text-headline-md font-bold text-on-surface">PROJECT PULSE</h1>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Construction Intelligence</p>
+                </div>
+                <nav class="flex-1 overflow-y-auto mt-4 flex flex-col gap-1 px-2">
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">database</span>
+                                Data Center
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">dashboard</span>
+                                Executive Dashboard
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-l-4 border-primary bg-primary/10 Active: scale-95 transition-transform"
+                                href="#">
+                                <span class="material-symbols-outlined">insights</span>
+                                Performance &amp; Drivers
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">monitoring</span>
+                                Interactive Visualizations
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">psychology</span>
+                                AI Estimator
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">precision_manufacturing</span>
+                                Smart Resource Optimizer
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">query_stats</span>
+                                Sensitivity / What-If
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">compare_arrows</span>
+                                Project Comparison
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined">assessment</span>
+                                Business Report
+                        </a>
+                </nav>
+                <div class="p-container-padding flex flex-col gap-3 mt-auto">
+                        <button
+                                class="bg-primary text-on-primary font-title-md text-title-md py-3 rounded-lg hover:bg-primary/90 transition-colors">Optimize
+                                Project</button>
+                        <div class="flex flex-col gap-2 mt-4">
+                                <div class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm">
+                                        <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                                        Dataset: 3k Projects
+                                </div>
+                                <div class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm">
+                                        <span class="material-symbols-outlined text-[16px]">memory</span>
+                                        Model: Ready
+                                </div>
+                                <div
+                                        class="flex items-center gap-2 text-on-surface-variant font-code-sm text-code-sm hover:text-on-surface cursor-pointer">
+                                        <span class="material-symbols-outlined text-[16px]">settings</span>
+                                        User Settings
+                                </div>
+                        </div>
+                </div>
+        </aside>
+        <div class="flex-1 md:ml-[260px] flex flex-col min-h-screen">
+                <!-- TopNavBar -->
+                <header
+                        class="bg-surface/80 text-primary font-body-md text-body-md docked top-0 w-full border-b border-white/5 flex justify-between items-center w-full px-container-padding h-16 sticky top-0 z-50 ml-[260px] max-w-[calc(100%-260px)] md:flex hidden backdrop-blur-xl">
+                        <div class="flex items-center gap-6">
+                                <div class="flex items-center gap-4 border-r border-white/10 pr-6">
+                                        <span class="material-symbols-outlined text-on-surface-variant">search</span>
+                                        <input class="bg-transparent border-none text-on-surface focus:ring-0 placeholder:text-on-surface-variant/50"
+                                                placeholder="Search..." type="text" />
+                                </div>
+                                <nav class="flex items-center gap-6">
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#">Dashboard</a>
+                                        <a class="text-primary font-bold border-b-2 border-primary pb-1 Active: opacity-80"
+                                                href="#">Analytics</a>
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#">AI Tools</a>
+                                </nav>
+                        </div>
+                        <div class="flex items-center gap-4">
+                                <button
+                                        class="bg-primary/10 text-primary px-4 py-2 rounded-md hover:bg-primary/20 transition-colors font-title-md text-title-md">Optimize</button>
+                                <button
+                                        class="text-on-surface-variant hover:text-primary transition-colors">Notifications</button>
+                                <div class="flex items-center gap-3">
+                                        <span
+                                                class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">notifications</span>
+                                        <span
+                                                class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">help_outline</span>
+                                        <span
+                                                class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">account_circle</span>
+                                </div>
+                        </div>
+                </header>
+                <main class="p-container-padding flex-1 flex flex-col gap-card-gap">
+                        <!-- Header Section -->
+                        <div class="flex flex-col gap-2 mb-4">
+                                <h2
+                                        class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface font-bold">
+                                        Performance &amp; Driver Analysis</h2>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant">Understand where projects
+                                        underperform and which factors drive overruns.</p>
+                        </div>
+                        <!-- Dimension Selector -->
+                        <section class="glass-card rounded-xl p-6">
+                                <div
+                                        class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                                        <h3 class="font-title-md text-title-md text-on-surface">Analyze By</h3>
+                                        <div
+                                                class="flex bg-surface-container-high rounded-lg p-1 w-full md:w-auto overflow-x-auto">
+                                                <button
+                                                        class="px-6 py-2 rounded-md bg-primary/20 text-primary font-label-md text-label-md whitespace-nowrap">Project
+                                                        Type</button>
+                                                <button
+                                                        class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors">Terrain</button>
+                                                <button
+                                                        class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors">Region</button>
+                                                <button
+                                                        class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors">Complexity</button>
+                                                <button
+                                                        class="px-6 py-2 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors">Season</button>
+                                        </div>
+                                </div>
+                        </section>
+                        <!-- Main Content Grid -->
+                        <div class="grid grid-cols-1 xl:grid-cols-12 gap-card-gap">
+                                <!-- Performance Breakdown Table -->
+                                <section class="glass-card rounded-xl p-6 xl:col-span-12">
+                                        <h3 class="font-title-md text-title-md text-on-surface mb-4">Performance
+                                                Breakdown Table</h3>
+                                        <div class="overflow-x-auto">
+                                                <table class="w-full text-left border-collapse">
+                                                        <thead>
+                                                                <tr
+                                                                        class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md border-b border-white/10">
+                                                                        <th class="py-3 px-4 font-semibold">Group</th>
+                                                                        <th class="py-3 px-4 font-semibold text-right">
+                                                                                Count</th>
+                                                                        <th class="py-3 px-4 font-semibold text-right">
+                                                                                Avg Cost Overrun</th>
+                                                                        <th class="py-3 px-4 font-semibold text-right">
+                                                                                Avg Schedule Overrun</th>
+                                                                        <th class="py-3 px-4 font-semibold text-right">
+                                                                                Avg Actual Cost</th>
+                                                                        <th class="py-3 px-4 font-semibold text-right">
+                                                                                Avg Duration</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody
+                                                                class="font-body-md text-body-md divide-y divide-white/5">
+                                                                <tr class="hover:bg-white/5 transition-colors">
+                                                                        <td class="py-3 px-4 text-on-surface">Commercial
+                                                                        </td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                1,245</td>
+                                                                        <td class="py-3 px-4 text-right text-error">
+                                                                                +12.4%</td>
+                                                                        <td class="py-3 px-4 text-right text-error">
+                                                                                +8.2%</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                ₹45.2M</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                18.5 mo</td>
+                                                                </tr>
+                                                                <tr class="hover:bg-white/5 transition-colors">
+                                                                        <td class="py-3 px-4 text-on-surface">
+                                                                                Infrastructure</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                850</td>
+                                                                        <td class="py-3 px-4 text-right text-error">
+                                                                                +18.7%</td>
+                                                                        <td class="py-3 px-4 text-right text-error">
+                                                                                +14.1%</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                ₹120.5M</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                36.2 mo</td>
+                                                                </tr>
+                                                                <tr class="hover:bg-white/5 transition-colors">
+                                                                        <td class="py-3 px-4 text-on-surface">
+                                                                                Residential</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                2,100</td>
+                                                                        <td class="py-3 px-4 text-right text-secondary">
+                                                                                +4.2%</td>
+                                                                        <td class="py-3 px-4 text-right text-secondary">
+                                                                                +2.1%</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                ₹12.8M</td>
+                                                                        <td
+                                                                                class="py-3 px-4 text-right text-on-surface-variant font-code-sm text-code-sm">
+                                                                                14.0 mo</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </div>
+                                </section>
+                                <!-- Cost vs Schedule Analysis -->
+                                <section class="glass-card rounded-xl p-6 xl:col-span-8 flex flex-col">
+                                        <h3 class="font-title-md text-title-md text-on-surface mb-2">Cost vs Schedule
+                                                Analysis</h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">High risk
+                                                projects cluster in the upper right quadrant.</p>
+                                        <div
+                                                class="flex-1 relative min-h-[300px] border-l border-b border-white/20 ml-8 mb-8">
+                                                <!-- Y Axis Label -->
+                                                <div
+                                                        class="absolute -left-12 top-1/2 -translate-y-1/2 -rotate-90 text-on-surface-variant font-label-md text-label-md">
+                                                        Cost Overrun (%)</div>
+                                                <!-- X Axis Label -->
+                                                <div
+                                                        class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-on-surface-variant font-label-md text-label-md">
+                                                        Schedule Overrun (%)</div>
+                                                <!-- Quadrant Guides -->
+                                                <div
+                                                        class="absolute inset-0 border-l border-b border-white/5 left-1/2 top-0 h-full">
+                                                </div>
+                                                <div
+                                                        class="absolute inset-0 border-t border-white/5 top-1/2 left-0 w-full">
+                                                </div>
+                                                <div
+                                                        class="absolute top-4 right-4 bg-error/10 text-error px-3 py-1 rounded text-label-md font-label-md border border-error/20">
+                                                        High Risk</div>
+                                                <!-- Scatter Points (Simulated) -->
+                                                <div
+                                                        class="absolute top-[20%] right-[30%] w-4 h-4 rounded-full bg-error/80 shadow-[0_0_10px_rgba(255,180,171,0.5)]">
+                                                </div>
+                                                <div
+                                                        class="absolute top-[15%] right-[15%] w-6 h-6 rounded-full bg-error/80 shadow-[0_0_10px_rgba(255,180,171,0.5)]">
+                                                </div>
+                                                <div
+                                                        class="absolute top-[40%] right-[20%] w-3 h-3 rounded-full bg-error/60">
+                                                </div>
+                                                <div
+                                                        class="absolute bottom-[20%] left-[30%] w-5 h-5 rounded-full bg-secondary/80">
+                                                </div>
+                                                <div
+                                                        class="absolute bottom-[40%] left-[10%] w-3 h-3 rounded-full bg-secondary/60">
+                                                </div>
+                                                <div
+                                                        class="absolute top-[40%] left-[40%] w-4 h-4 rounded-full bg-primary/80">
+                                                </div>
+                                        </div>
+                                </section>
+                                <!-- Driver Influence Chart -->
+                                <section class="glass-card rounded-xl p-6 xl:col-span-4 flex flex-col">
+                                        <h3 class="font-title-md text-title-md text-on-surface mb-2">Driver Influence
+                                        </h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">Numeric
+                                                correlations to overruns.</p>
+                                        <div class="flex-1 flex flex-col gap-4 justify-center">
+                                                <div class="space-y-1">
+                                                        <div class="flex justify-between font-label-md text-label-md">
+                                                                <span class="text-on-surface">Material Index</span>
+                                                                <span class="text-error">0.85</span>
+                                                        </div>
+                                                        <div
+                                                                class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                                                                <div class="h-full bg-error" style="width: 85%"></div>
+                                                        </div>
+                                                </div>
+                                                <div class="space-y-1">
+                                                        <div class="flex justify-between font-label-md text-label-md">
+                                                                <span class="text-on-surface">Complexity</span>
+                                                                <span class="text-error">0.72</span>
+                                                        </div>
+                                                        <div
+                                                                class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                                                                <div class="h-full bg-error" style="width: 72%"></div>
+                                                        </div>
+                                                </div>
+                                                <div class="space-y-1">
+                                                        <div class="flex justify-between font-label-md text-label-md">
+                                                                <span class="text-on-surface">Floors</span>
+                                                                <span class="text-tertiary">0.45</span>
+                                                        </div>
+                                                        <div
+                                                                class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                                                                <div class="h-full bg-tertiary" style="width: 45%">
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="space-y-1">
+                                                        <div class="flex justify-between font-label-md text-label-md">
+                                                                <span class="text-on-surface">Experience</span>
+                                                                <span class="text-secondary">-0.60</span>
+                                                        </div>
+                                                        <div
+                                                                class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden flex justify-end">
+                                                                <div class="h-full bg-secondary" style="width: 60%">
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </section>
+                        </div>
+                </main>
+        </div>
+</body>
+
+</html>

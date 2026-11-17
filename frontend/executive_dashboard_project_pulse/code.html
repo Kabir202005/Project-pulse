@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Executive Dashboard - Project Pulse</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-secondary": "#003824",
+                                                "surface-container-low": "#191b23",
+                                                "error-container": "#93000a",
+                                                "primary-fixed-dim": "#adc6ff",
+                                                "on-error": "#690005",
+                                                "surface-bright": "#363941",
+                                                "secondary": "#4edea3",
+                                                "on-tertiary": "#472a00",
+                                                "on-tertiary-fixed-variant": "#653e00",
+                                                "outline": "#8c909f",
+                                                "surface-container-high": "#272a31",
+                                                "on-primary": "#002e6a",
+                                                "surface-container": "#1d2027",
+                                                "inverse-on-surface": "#2e3038",
+                                                "on-background": "#e1e2ec",
+                                                "inverse-surface": "#e1e2ec",
+                                                "on-primary-fixed": "#001a42",
+                                                "primary-container": "#4d8eff",
+                                                "surface-variant": "#32353c",
+                                                "surface-container-highest": "#32353c",
+                                                "on-secondary-fixed": "#002113",
+                                                "surface-dim": "#10131a",
+                                                "on-secondary-container": "#00311f",
+                                                "error": "#ffb4ab",
+                                                "surface-tint": "#adc6ff",
+                                                "primary": "#adc6ff",
+                                                "on-tertiary-fixed": "#2a1700",
+                                                "tertiary": "#ffb95f",
+                                                "on-tertiary-container": "#3e2400",
+                                                "outline-variant": "#424754",
+                                                "tertiary-fixed-dim": "#ffb95f",
+                                                "on-error-container": "#ffdad6",
+                                                "background": "#10131a",
+                                                "primary-fixed": "#d8e2ff",
+                                                "on-surface": "#e1e2ec",
+                                                "on-surface-variant": "#c2c6d6",
+                                                "surface": "#10131a",
+                                                "surface-container-lowest": "#0b0e15",
+                                                "tertiary-container": "#ca8100",
+                                                "on-primary-container": "#00285d",
+                                                "on-primary-fixed-variant": "#004395",
+                                                "tertiary-fixed": "#ffddb8",
+                                                "inverse-primary": "#005ac2",
+                                                "secondary-fixed": "#6ffbbe",
+                                                "secondary-container": "#00a572",
+                                                "secondary-fixed-dim": "#4edea3",
+                                                "on-secondary-fixed-variant": "#005236"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "card-gap": "20px",
+                                                "gutter": "16px",
+                                                "container-padding": "24px",
+                                                "sidebar-width": "260px",
+                                                "unit": "4px"
+                                        },
+                                        "fontFamily": {
+                                                "code-sm": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Geist"
+                                                ],
+                                                "title-md": [
+                                                        "Geist"
+                                                ],
+                                                "label-md": [
+                                                        "Geist"
+                                                ],
+                                                "body-lg": [
+                                                        "Inter"
+                                                ],
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "display-lg": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg": [
+                                                        "Geist"
+                                                ],
+                                                "headline-md": [
+                                                        "Geist"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "code-sm": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "32px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "title-md": [
+                                                        "18px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "12px",
+                                                        {
+                                                                "lineHeight": "16px",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "24px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "20px",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "56px",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "40px",
+                                                                "letterSpacing": "-0.01em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "32px",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                body {
+                        background-color: #050505;
+                }
+
+                .bg-level-1 {
+                        background-color: #0F1115;
+                }
+
+                .bg-level-2 {
+                        background-color: #1A1D23;
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                }
+
+                .blueprint-grid {
+                        background-size: 40px 40px;
+                        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+                }
+        </style>
+</head>
+
+<body
+        class="text-on-surface antialiased bg-background blueprint-grid min-h-screen font-body-md text-body-md overflow-x-hidden">
+        <!-- TopNavBar -->
+        <nav aria-label="Top Navigation"
+                class="flex justify-between items-center w-full px-container-padding h-16 sticky top-0 z-50 ml-[260px] max-w-[calc(100%-260px)] bg-surface/80 dark:bg-surface/80 backdrop-blur-xl hidden md:flex">
+                <div class="flex items-center gap-6">
+                        <span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface">Project
+                                Pulse</span>
+                        <div class="hidden lg:flex gap-1 ml-4">
+                                <a class="px-4 py-2 rounded text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors"
+                                        href="#">Dashboard</a>
+                                <a class="px-4 py-2 rounded text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors"
+                                        href="#">Analytics</a>
+                                <a class="px-4 py-2 rounded text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors"
+                                        href="#">AI Tools</a>
+                        </div>
+                </div>
+                <div class="flex items-center gap-4">
+                        <button aria-label="notifications"
+                                class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full">
+                                <span class="material-symbols-outlined"
+                                        style="font-variation-settings: 'FILL' 0;">notifications</span>
+                        </button>
+                        <button aria-label="help_outline"
+                                class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full">
+                                <span class="material-symbols-outlined"
+                                        style="font-variation-settings: 'FILL' 0;">help_outline</span>
+                        </button>
+                        <button aria-label="account_circle"
+                                class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full">
+                                <span class="material-symbols-outlined"
+                                        style="font-variation-settings: 'FILL' 0;">account_circle</span>
+                        </button>
+                        <button
+                                class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded hover:bg-primary-container transition-colors ml-2">Optimize</button>
+                </div>
+        </nav>
+        <!-- SideNavBar -->
+        <nav aria-label="Sidebar Navigation"
+                class="flex flex-col h-full w-[260px] fixed left-0 top-0 z-40 bg-surface-container-low dark:bg-surface-container-low border-r border-white/5 hidden md:flex">
+                <div class="p-6 flex flex-col gap-1 border-b border-white/5">
+                        <div class="flex items-center gap-3 mb-2">
+                                <div
+                                        class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+                                        <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">corporate_fare</span>
+                                </div>
+                                <div>
+                                        <h1
+                                                class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface leading-tight">
+                                                PROJECT PULSE</h1>
+                                        <p class="font-label-md text-label-md text-on-surface-variant">Construction
+                                                Intelligence</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">database</span>
+                                <span>Data Center</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-primary font-bold border-l-4 border-primary bg-primary/10"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                                <span>Executive Dashboard</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">insights</span>
+                                <span>Performance &amp; Drivers</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">monitoring</span>
+                                <span>Interactive Visualizations</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">psychology</span>
+                                <span>AI Estimator</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">precision_manufacturing</span>
+                                <span>Smart Resource Optimizer</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">query_stats</span>
+                                <span>Sensitivity / What-If</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">compare_arrows</span>
+                                <span>Project Comparison</span>
+                        </a>
+                        <a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-xl"
+                                        style="font-variation-settings: 'FILL' 0;">assessment</span>
+                                <span>Business Report</span>
+                        </a>
+                </div>
+                <div class="p-4 border-t border-white/5 mt-auto">
+                        <button
+                                class="w-full bg-primary/10 text-primary font-label-md text-label-md px-4 py-3 rounded border border-primary/20 hover:bg-primary/20 transition-colors mb-4 flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-sm"
+                                        style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                Optimize Project
+                        </button>
+                        <div class="flex flex-col gap-2">
+                                <a class="flex items-center gap-3 px-2 py-2 rounded text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-lg"
+                                                style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+                                        <span class="text-sm">Dataset: 3k Projects</span>
+                                </a>
+                                <a class="flex items-center gap-3 px-2 py-2 rounded text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-lg"
+                                                style="font-variation-settings: 'FILL' 0;">memory</span>
+                                        <span class="text-sm">Model: Ready</span>
+                                </a>
+                                <a class="flex items-center gap-3 px-2 py-2 rounded text-on-surface-variant font-body-md text-body-md hover:text-on-surface transition-colors"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-lg"
+                                                style="font-variation-settings: 'FILL' 0;">settings</span>
+                                        <span class="text-sm">User Settings</span>
+                                </a>
+                        </div>
+                </div>
+        </nav>
+        <!-- Main Content Canvas -->
+        <main class="md:ml-[260px] p-4 md:p-container-padding flex flex-col gap-card-gap min-h-screen">
+                <!-- Header Section -->
+                <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-2">
+                        <div>
+                                <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Executive
+                                        Dashboard</h2>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Portfolio health, cost
+                                        performance, schedule risk, and project exposure.</p>
+                        </div>
+                        <div class="flex items-center gap-3 bg-level-2 px-4 py-2 rounded-lg border-white/5">
+                                <span class="material-symbols-outlined text-on-surface-variant"
+                                        style="font-variation-settings: 'FILL' 0;">calendar_month</span>
+                                <select
+                                        class="bg-transparent border-none text-on-surface font-title-md text-title-md focus:ring-0 p-0 pr-6 cursor-pointer">
+                                        <option class="bg-surface-container">Q3 2024 Dataset (Latest)</option>
+                                        <option class="bg-surface-container">Q2 2024 Dataset</option>
+                                        <option class="bg-surface-container">FY 2023 Comprehensive</option>
+                                </select>
+                        </div>
+                </header>
+                <!-- KPI Grid -->
+                <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-card-gap">
+                        <!-- Active Projects -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active
+                                                Projects</span>
+                                        <span class="material-symbols-outlined text-primary/70"
+                                                style="font-variation-settings: 'FILL' 0;">architecture</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span
+                                                class="font-display-lg text-display-lg font-bold text-on-surface">3,000</span>
+                                </div>
+                        </div>
+                        <!-- Planned Portfolio Cost -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Planned
+                                                Cost</span>
+                                        <span class="material-symbols-outlined text-primary/70"
+                                                style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span class="font-display-lg text-display-lg font-bold text-on-surface">₹4.2<span
+                                                        class="text-2xl text-on-surface-variant">B</span></span>
+                                </div>
+                        </div>
+                        <!-- Actual Portfolio Cost -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Actual
+                                                Cost</span>
+                                        <span class="material-symbols-outlined text-primary/70"
+                                                style="font-variation-settings: 'FILL' 0;">receipt_long</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span class="font-display-lg text-display-lg font-bold text-on-surface">₹4.8<span
+                                                        class="text-2xl text-on-surface-variant">B</span></span>
+                                </div>
+                        </div>
+                        <!-- Avg Cost Overrun -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors border-l-4 border-l-error">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg
+                                                Cost Overrun</span>
+                                        <span class="material-symbols-outlined text-error"
+                                                style="font-variation-settings: 'FILL' 0;">trending_up</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span class="font-display-lg text-display-lg font-bold text-error">+35.2%</span>
+                                </div>
+                        </div>
+                        <!-- Avg Schedule Overrun -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors border-l-4 border-l-error">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg
+                                                Sched Overrun</span>
+                                        <span class="material-symbols-outlined text-error"
+                                                style="font-variation-settings: 'FILL' 0;">schedule</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span class="font-display-lg text-display-lg font-bold text-error">+46.1%</span>
+                                </div>
+                        </div>
+                        <!-- On-Budget Rate -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">On-Budget
+                                                Rate</span>
+                                        <span class="material-symbols-outlined text-secondary"
+                                                style="font-variation-settings: 'FILL' 0;">check_circle</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span
+                                                class="font-display-lg text-display-lg font-bold text-on-surface">62%</span>
+                                </div>
+                        </div>
+                        <!-- On-Schedule Rate -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">On-Schedule
+                                                Rate</span>
+                                        <span class="material-symbols-outlined text-tertiary"
+                                                style="font-variation-settings: 'FILL' 0;">timer</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span
+                                                class="font-display-lg text-display-lg font-bold text-on-surface">54%</span>
+                                </div>
+                        </div>
+                        <!-- Avg Cost/Sq Ft -->
+                        <div
+                                class="bg-level-2 rounded-lg p-5 flex flex-col justify-between h-full hover:border-white/10 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg
+                                                Cost / Sq Ft</span>
+                                        <span class="material-symbols-outlined text-primary/70"
+                                                style="font-variation-settings: 'FILL' 0;">square_foot</span>
+                                </div>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                        <span
+                                                class="font-display-lg text-display-lg font-bold text-on-surface">₹245</span>
+                                </div>
+                        </div>
+                </section>
+                <!-- Portfolio Health Banner -->
+                <section class="bg-level-2 rounded-xl p-6 border-l-4 border-l-tertiary relative overflow-hidden">
+                        <div
+                                class="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-tertiary/5 to-transparent pointer-events-none">
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                                <div class="flex flex-col items-center justify-center min-w-[120px]">
+                                        <div class="relative w-24 h-24 flex items-center justify-center">
+                                                <svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+                                                        <path class="text-surface-container-high"
+                                                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                fill="none" stroke="currentColor"
+                                                                stroke-dasharray="100, 100" stroke-width="3"></path>
+                                                        <path class="text-tertiary"
+                                                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                fill="none" stroke="currentColor"
+                                                                stroke-dasharray="74, 100" stroke-width="3"></path>
+                                                </svg>
+                                                <div class="absolute flex flex-col items-center justify-center">
+                                                        <span
+                                                                class="font-title-md text-title-md font-bold text-tertiary">74</span>
+                                                </div>
+                                        </div>
+                                        <span
+                                                class="font-label-md text-label-md text-on-surface-variant mt-2 uppercase tracking-wider">Health
+                                                Score</span>
+                                </div>
+                                <div class="flex-1">
+                                        <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-2">
+                                                Portfolio Requires Attention</h3>
+                                        <p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+                                                Overall portfolio health is moderate. Significant risk exposure detected
+                                                in specific terrain types and high-complexity projects. Schedule delays
+                                                are compounding cost overruns in the bottom quartile of the portfolio.
+                                        </p>
+                                </div>
+                                <div class="flex gap-4">
+                                        <div
+                                                class="bg-surface-container rounded p-3 flex flex-col items-center min-w-[100px]">
+                                                <span
+                                                        class="font-headline-md text-headline-md text-error font-bold">12%</span>
+                                                <span class="font-code-sm text-code-sm text-on-surface-variant mt-1">High
+                                                        Risk</span>
+                                        </div>
+                                        <div
+                                                class="bg-surface-container rounded p-3 flex flex-col items-center min-w-[100px]">
+                                                <span
+                                                        class="font-headline-md text-headline-md text-tertiary font-bold">34%</span>
+                                                <span class="font-code-sm text-code-sm text-on-surface-variant mt-1">Med
+                                                        Risk</span>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Visualization Grid -->
+                <section class="grid grid-cols-1 lg:grid-cols-2 gap-card-gap">
+                        <!-- Chart A: Terrain -->
+                        <div class="bg-level-2 rounded-xl p-6 flex flex-col h-80">
+                                <div class="flex justify-between items-center mb-6">
+                                        <h3 class="font-title-md text-title-md font-bold text-on-surface">Avg Cost
+                                                Overrun by Terrain</h3>
+                                        <button class="text-on-surface-variant hover:text-primary"><span
+                                                        class="material-symbols-outlined"
+                                                        style="font-variation-settings: 'FILL' 0;">more_vert</span></button>
+                                </div>
+                                <div
+                                        class="flex-1 flex items-end justify-around gap-2 px-4 pb-4 border-b border-white/10 relative">
+                                        <!-- Y Axis lines (simulated) -->
+                                        <div
+                                                class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-4">
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                        </div>
+                                        <div
+                                                class="w-12 bg-primary/20 hover:bg-primary/40 rounded-t transition-colors relative group h-[20%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        12%</div>
+                                        </div>
+                                        <div
+                                                class="w-12 bg-primary/40 hover:bg-primary/60 rounded-t transition-colors relative group h-[45%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        28%</div>
+                                        </div>
+                                        <div
+                                                class="w-12 bg-error/60 hover:bg-error/80 rounded-t transition-colors relative group h-[85%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        52%</div>
+                                        </div>
+                                        <div
+                                                class="w-12 bg-error/80 hover:bg-error rounded-t transition-colors relative group h-[100%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        65%</div>
+                                        </div>
+                                        <div
+                                                class="w-12 bg-primary/30 hover:bg-primary/50 rounded-t transition-colors relative group h-[30%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        18%</div>
+                                        </div>
+                                </div>
+                                <div class="flex justify-around pt-2">
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-12 text-center">Flat</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-12 text-center">Hilly</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-12 text-center">Rocky</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-12 text-center">Wetland</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-12 text-center">Sandy</span>
+                                </div>
+                        </div>
+                        <!-- Chart B: Complexity -->
+                        <div class="bg-level-2 rounded-xl p-6 flex flex-col h-80">
+                                <div class="flex justify-between items-center mb-6">
+                                        <h3 class="font-title-md text-title-md font-bold text-on-surface">Avg Cost
+                                                Overrun by Complexity</h3>
+                                        <button class="text-on-surface-variant hover:text-primary"><span
+                                                        class="material-symbols-outlined"
+                                                        style="font-variation-settings: 'FILL' 0;">more_vert</span></button>
+                                </div>
+                                <div
+                                        class="flex-1 flex items-end justify-around gap-2 px-4 pb-4 border-b border-white/10 relative">
+                                        <!-- Y Axis lines (simulated) -->
+                                        <div
+                                                class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-4">
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                                <div class="border-t border-white/5 w-full h-0"></div>
+                                        </div>
+                                        <div
+                                                class="w-16 bg-primary/20 hover:bg-primary/40 rounded-t transition-colors relative group h-[15%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        8%</div>
+                                        </div>
+                                        <div
+                                                class="w-16 bg-primary/40 hover:bg-primary/60 rounded-t transition-colors relative group h-[35%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        22%</div>
+                                        </div>
+                                        <div
+                                                class="w-16 bg-tertiary/60 hover:bg-tertiary/80 rounded-t transition-colors relative group h-[60%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        45%</div>
+                                        </div>
+                                        <div
+                                                class="w-16 bg-error/80 hover:bg-error rounded-t transition-colors relative group h-[95%] z-10 flex justify-center">
+                                                <div
+                                                        class="absolute -top-8 bg-surface-container-high px-2 py-1 rounded text-code-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        78%</div>
+                                        </div>
+                                </div>
+                                <div class="flex justify-around pt-2">
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-16 text-center">Low</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-16 text-center">Medium</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-16 text-center">High</span>
+                                        <span
+                                                class="font-code-sm text-code-sm text-on-surface-variant w-16 text-center">Very
+                                                High</span>
+                                </div>
+                        </div>
+                </section>
+                <!-- Risk Table -->
+                <section class="bg-level-2 rounded-xl border border-white/5 overflow-hidden flex flex-col">
+                        <div
+                                class="p-6 border-b border-white/5 flex justify-between items-center bg-surface-container-low">
+                                <h3 class="font-title-md text-title-md font-bold text-on-surface">Top 10 Highest-Risk
+                                        Projects</h3>
+                                <button
+                                        class="text-primary font-label-md text-label-md flex items-center gap-1 hover:text-primary-container">View
+                                        All <span class="material-symbols-outlined text-sm"
+                                                style="font-variation-settings: 'FILL' 0;">arrow_forward</span></button>
+                        </div>
+                        <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                        <thead>
+                                                <tr
+                                                        class="bg-surface-container/50 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                                        <th class="p-4 font-semibold border-b border-white/5">Project ID
+                                                        </th>
+                                                        <th class="p-4 font-semibold border-b border-white/5">Type</th>
+                                                        <th class="p-4 font-semibold border-b border-white/5">Terrain
+                                                        </th>
+                                                        <th
+                                                                class="p-4 font-semibold border-b border-white/5 text-right">
+                                                                Cost Overrun</th>
+                                                        <th
+                                                                class="p-4 font-semibold border-b border-white/5 text-right">
+                                                                Schedule Overrun</th>
+                                                        <th
+                                                                class="p-4 font-semibold border-b border-white/5 text-center">
+                                                                Risk Level</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody class="font-body-md text-body-md divide-y divide-white/5">
+                                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                                        <td class="p-4 font-code-sm text-primary">PRJ-8892</td>
+                                                        <td class="p-4 text-on-surface">Commercial Tower</td>
+                                                        <td class="p-4 text-on-surface-variant">Wetland</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+112.4%</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+84.1%</td>
+                                                        <td class="p-4 text-center">
+                                                                <span
+                                                                        class="inline-flex items-center justify-center px-2 py-1 rounded bg-error/20 text-error font-label-md text-[10px]">CRITICAL</span>
+                                                        </td>
+                                                </tr>
+                                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                                        <td class="p-4 font-code-sm text-primary">PRJ-7341</td>
+                                                        <td class="p-4 text-on-surface">Highway Extension</td>
+                                                        <td class="p-4 text-on-surface-variant">Rocky</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+98.2%</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+65.0%</td>
+                                                        <td class="p-4 text-center">
+                                                                <span
+                                                                        class="inline-flex items-center justify-center px-2 py-1 rounded bg-error/20 text-error font-label-md text-[10px]">CRITICAL</span>
+                                                        </td>
+                                                </tr>
+                                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                                        <td class="p-4 font-code-sm text-primary">PRJ-9102</td>
+                                                        <td class="p-4 text-on-surface">Industrial Plant</td>
+                                                        <td class="p-4 text-on-surface-variant">Wetland</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+87.5%</td>
+                                                        <td class="p-4 text-right font-code-sm text-tertiary">+42.3%
+                                                        </td>
+                                                        <td class="p-4 text-center">
+                                                                <span
+                                                                        class="inline-flex items-center justify-center px-2 py-1 rounded bg-tertiary/20 text-tertiary font-label-md text-[10px]">HIGH</span>
+                                                        </td>
+                                                </tr>
+                                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                                        <td class="p-4 font-code-sm text-primary">PRJ-6522</td>
+                                                        <td class="p-4 text-on-surface">Bridge Construction</td>
+                                                        <td class="p-4 text-on-surface-variant">Rocky</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+82.1%</td>
+                                                        <td class="p-4 text-right font-code-sm text-error">+71.8%</td>
+                                                        <td class="p-4 text-center">
+                                                                <span
+                                                                        class="inline-flex items-center justify-center px-2 py-1 rounded bg-tertiary/20 text-tertiary font-label-md text-[10px]">HIGH</span>
+                                                        </td>
+                                                </tr>
+                                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                                        <td class="p-4 font-code-sm text-primary">PRJ-4419</td>
+                                                        <td class="p-4 text-on-surface">Residential Complex</td>
+                                                        <td class="p-4 text-on-surface-variant">Hilly</td>
+                                                        <td class="p-4 text-right font-code-sm text-tertiary">+45.6%
+                                                        </td>
+                                                        <td class="p-4 text-right font-code-sm text-tertiary">+38.9%
+                                                        </td>
+                                                        <td class="p-4 text-center">
+                                                                <span
+                                                                        class="inline-flex items-center justify-center px-2 py-1 rounded bg-tertiary/20 text-tertiary font-label-md text-[10px]">HIGH</span>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                </table>
+                        </div>
+                </section>
+        </main>
+</body>
+
+</html>

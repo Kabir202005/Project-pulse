@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Project Pulse - Data Center</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        /* Blueprint Grid Pattern */
+        .bg-blueprint {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #10131a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #32353c;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #424754;
+        }
+    </style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#003824",
+                        "surface-container-low": "#191b23",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-error": "#690005",
+                        "surface-bright": "#363941",
+                        "secondary": "#4edea3",
+                        "on-tertiary": "#472a00",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "outline": "#8c909f",
+                        "surface-container-high": "#272a31",
+                        "on-primary": "#002e6a",
+                        "surface-container": "#1d2027",
+                        "inverse-on-surface": "#2e3038",
+                        "on-background": "#e1e2ec",
+                        "inverse-surface": "#e1e2ec",
+                        "on-primary-fixed": "#001a42",
+                        "primary-container": "#4d8eff",
+                        "surface-variant": "#32353c",
+                        "surface-container-highest": "#32353c",
+                        "on-secondary-fixed": "#002113",
+                        "surface-dim": "#10131a",
+                        "on-secondary-container": "#00311f",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary": "#ffb95f",
+                        "on-tertiary-container": "#3e2400",
+                        "outline-variant": "#424754",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-error-container": "#ffdad6",
+                        "background": "#10131a",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#e1e2ec",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface": "#10131a",
+                        "surface-container-lowest": "#0b0e15",
+                        "tertiary-container": "#ca8100",
+                        "on-primary-container": "#00285d",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-primary": "#005ac2",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary-container": "#00a572",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#005236"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "20px",
+                        "gutter": "16px",
+                        "container-padding": "24px",
+                        "sidebar-width": "260px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "code-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "title-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "code-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md min-h-screen flex antialiased">
+    <!-- Global Blueprint Pattern -->
+    <div class="fixed inset-0 pointer-events-none z-0 bg-blueprint opacity-50"></div>
+    <!-- SideNavBar -->
+    <nav
+        class="bg-surface-container-low dark:bg-surface-container-low flex flex-col h-full w-[260px] fixed left-0 top-0 z-40 border-r border-white/5">
+        <!-- Header -->
+        <div class="p-container-padding flex items-center gap-3 border-b border-white/5">
+            <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-on-primary-container"
+                    style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+            </div>
+            <div>
+                <h1
+                    class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface tracking-tight">
+                    PROJECT PULSE</h1>
+                <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-0.5">
+                    Construction Intelligence</p>
+            </div>
+        </div>
+        <!-- Main Navigation -->
+        <div class="flex-1 overflow-y-auto py-4">
+            <ul class="flex flex-col gap-1 px-3">
+                <!-- Active Item: Data Center -->
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary font-bold border-l-4 border-primary bg-primary/10 transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined"
+                            style="font-variation-settings: 'FILL' 1;">database</span>
+                        <span class="font-title-md text-title-md">Data Center</span>
+                    </a>
+                </li>
+                <!-- Inactive Items -->
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span>Executive Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">insights</span>
+                        <span>Performance &amp; Drivers</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">monitoring</span>
+                        <span>Interactive Visualizations</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">psychology</span>
+                        <span>AI Estimator</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">precision_manufacturing</span>
+                        <span>Smart Resource Optimizer</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">query_stats</span>
+                        <span>Sensitivity / What-If</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">compare_arrows</span>
+                        <span>Project Comparison</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors ml-1 border-l-4 border-transparent"
+                        href="#">
+                        <span class="material-symbols-outlined">assessment</span>
+                        <span>Business Report</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- CTA & Footer -->
+        <div class="p-container-padding flex flex-col gap-4 border-t border-white/5">
+            <button
+                class="w-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 py-2.5 rounded-lg font-title-md text-title-md font-medium transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                Optimize Project
+            </button>
+            <ul class="flex flex-col gap-2">
+                <li>
+                    <a class="flex items-center gap-3 text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+                        Dataset: 3k Projects
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 text-secondary font-label-md text-label-md transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined text-[18px]"
+                            style="font-variation-settings: 'FILL' 1;">memory</span>
+                        Model: Ready
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors mt-2"
+                        href="#">
+                        <span class="material-symbols-outlined text-[18px]">settings</span>
+                        User Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 ml-[260px] flex flex-col min-h-screen relative z-10 w-[calc(100%-260px)]">
+        <!-- TopNavBar -->
+        <header
+            class="flex justify-between items-center w-full px-container-padding h-16 sticky top-0 z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/5 flat no shadows">
+            <div class="flex items-center gap-6">
+                <!-- Search (Left Aligned per JSON intent) -->
+                <div class="relative group hidden lg:block">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+                    <input
+                        class="bg-surface-container-high border border-white/5 rounded-lg py-1.5 pl-10 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all font-body-md text-body-md w-64"
+                        placeholder="Search modules..." type="text" />
+                </div>
+                <nav class="flex gap-4">
+                    <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors py-1"
+                        href="#">Dashboard</a>
+                    <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors py-1"
+                        href="#">Analytics</a>
+                    <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors py-1"
+                        href="#">AI Tools</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="bg-primary text-on-primary hover:bg-primary/90 px-4 py-1.5 rounded-lg font-title-md text-title-md font-medium transition-colors">Optimize</button>
+                <div class="h-6 w-px bg-white/10 mx-1"></div>
+                <button class="text-on-surface-variant hover:text-primary transition-colors relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+                </button>
+                <button class="text-on-surface-variant hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">help_outline</span>
+                </button>
+                <button class="text-on-surface-variant hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">account_circle</span>
+                </button>
+            </div>
+        </header>
+        <!-- Main Canvas -->
+        <main class="p-container-padding flex flex-col gap-card-gap max-w-[1600px] mx-auto w-full flex-1">
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Data
+                            Center</h2>
+                        <span
+                            class="bg-secondary-container/20 text-secondary border border-secondary/30 px-3 py-1 rounded-full font-label-md text-label-md flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[14px]"
+                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            3,000 Rows Loaded
+                        </span>
+                    </div>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Import, validate, and prepare
+                        construction project data for advanced analysis and AI estimation.</p>
+                </div>
+            </div>
+            <!-- Top Grid: Upload & Quick Start -->
+            <div class="grid grid-cols-12 gap-card-gap">
+                <!-- Upload Section (Span 8) -->
+                <div
+                    class="col-span-12 lg:col-span-8 bg-surface-container border border-white/5 rounded-xl p-6 flex flex-col shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)]">
+                    <h3 class="font-title-md text-title-md text-on-surface mb-4">Upload Project Dataset</h3>
+                    <div
+                        class="flex-1 border-2 border-dashed border-white/10 hover:border-primary/50 bg-surface-container-low rounded-xl flex flex-col items-center justify-center p-8 transition-colors group cursor-pointer">
+                        <div
+                            class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl text-primary">cloud_upload</span>
+                        </div>
+                        <p class="font-title-md text-title-md text-on-surface mb-1">Drag &amp; drop your file here</p>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6 text-center max-w-sm">Supports
+                            .CSV, .XLSX, and .JSON files containing project schedules, costs, and resource allocations.
+                            Max size: 500MB.</p>
+                        <div class="flex items-center gap-4">
+                            <button
+                                class="bg-surface-variant text-on-surface hover:bg-surface-variant/80 border border-white/10 px-6 py-2 rounded-lg font-title-md text-title-md transition-colors">
+                                Browse Files
+                            </button>
+                            <span class="font-body-md text-body-md text-on-surface-variant">or</span>
+                            <button
+                                class="text-primary hover:text-primary-fixed-dim transition-colors font-title-md text-title-md underline underline-offset-4">
+                                Connect Database
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quick Start & Health (Span 4) -->
+                <div class="col-span-12 lg:col-span-4 flex flex-col gap-card-gap">
+                    <!-- Quick Start -->
+                    <div
+                        class="bg-primary/10 border border-primary/20 rounded-xl p-6 flex-1 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] flex flex-col justify-center">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-primary">speed</span>
+                            </div>
+                            <div>
+                                <h3 class="font-title-md text-title-md text-on-surface mb-1 text-primary">Quick Start
+                                </h3>
+                                <p class="font-body-md text-body-md text-on-surface-variant">Explore the platform
+                                    instantly using our comprehensive baseline dataset of 3,000 global projects.</p>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-on-primary hover:bg-primary/90 px-4 py-2.5 rounded-lg font-title-md text-title-md font-medium transition-colors mt-auto shadow-lg shadow-primary/20">
+                            Load Sample Dataset
+                        </button>
+                    </div>
+                    <!-- Health Score -->
+                    <div
+                        class="bg-surface-container border border-white/5 rounded-xl p-6 flex items-center justify-between shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)]">
+                        <div>
+                            <h3 class="font-title-md text-title-md text-on-surface mb-1">Data Quality</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Current loaded dataset health
+                            </p>
+                        </div>
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                            <svg class="w-full h-full -rotate-90" viewbox="0 0 36 36"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle class="stroke-surface-variant" cx="18" cy="18" fill="none" r="16"
+                                    stroke-width="3"></circle>
+                                <circle class="stroke-secondary" cx="18" cy="18" fill="none" r="16"
+                                    stroke-dasharray="100 100" stroke-dashoffset="2" stroke-linecap="round"
+                                    stroke-width="3"></circle>
+                            </svg>
+                            <span class="absolute font-title-md text-title-md font-bold text-secondary">98%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- KPI Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-card-gap">
+                <!-- KPI 1 -->
+                <div
+                    class="bg-surface-container border border-white/5 rounded-xl p-5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-5xl">table_rows</span>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-1">Total Raw Rows</p>
+                    <p class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">3,000</p>
+                </div>
+                <!-- KPI 2 -->
+                <div
+                    class="bg-surface-container border border-white/5 rounded-xl p-5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-5xl">filter_alt</span>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-1">Deduplicated Rows</p>
+                    <div class="flex items-end gap-2">
+                        <p class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">2,984
+                        </p>
+                        <span class="text-error font-body-md text-body-md mb-1.5 flex items-center"><span
+                                class="material-symbols-outlined text-[14px]">arrow_downward</span> 16 duplicate</span>
+                    </div>
+                </div>
+                <!-- KPI 3 -->
+                <div
+                    class="bg-surface-container border border-white/5 rounded-xl p-5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-5xl">payments</span>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-1">Cost Imputations</p>
+                    <div class="flex items-end gap-2">
+                        <p class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">21</p>
+                        <span class="text-tertiary font-body-md text-body-md mb-1.5">Model Generated</span>
+                    </div>
+                </div>
+                <!-- KPI 4 -->
+                <div
+                    class="bg-surface-container border border-white/5 rounded-xl p-5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-5xl">engineering</span>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-1">Contractor Exp Imputations</p>
+                    <div class="flex items-end gap-2">
+                        <p class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">14</p>
+                        <span class="text-tertiary font-body-md text-body-md mb-1.5">Model Generated</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Data Preview Table -->
+            <div
+                class="bg-surface-container border border-white/5 rounded-xl shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+                <!-- Table Toolbar -->
+                <div
+                    class="p-4 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-surface-container-high/50">
+                    <h3 class="font-title-md text-title-md text-on-surface font-semibold">Data Preview</h3>
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+                            <input
+                                class="bg-surface-dim border border-white/10 rounded-md py-1.5 pl-8 pr-3 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary/50 text-sm w-48"
+                                placeholder="Search records..." type="text" />
+                        </div>
+                        <button
+                            class="bg-surface-dim border border-white/10 hover:bg-surface-variant/50 text-on-surface px-3 py-1.5 rounded-md text-sm flex items-center gap-2 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">filter_list</span> Filters
+                        </button>
+                        <button
+                            class="bg-surface-dim border border-white/10 hover:bg-surface-variant/50 text-on-surface px-3 py-1.5 rounded-md text-sm flex items-center gap-2 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">download</span> Export
+                        </button>
+                    </div>
+                </div>
+                <!-- Table Container -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-surface-dim border-b border-white/10">
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0">
+                                    Project ID</th>
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0">
+                                    Type</th>
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0">
+                                    Terrain</th>
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0">
+                                    Region</th>
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0">
+                                    Complexity</th>
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0 text-right">
+                                    Actual Cost (₹K)</th>
+                                <th
+                                    class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider sticky top-0 text-right">
+                                    Actual Duration (Mo)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-code-sm text-code-sm text-on-surface divide-y divide-white/5">
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-3 px-4 text-primary">PRJ-9021</td>
+                                <td class="py-3 px-4">Commercial High-Rise</td>
+                                <td class="py-3 px-4">Urban Dense</td>
+                                <td class="py-3 px-4">North America East</td>
+                                <td class="py-3 px-4"><span
+                                        class="bg-error/20 text-error px-2 py-0.5 rounded text-xs border border-error/20">High</span>
+                                </td>
+                                <td class="py-3 px-4 text-right">142.5</td>
+                                <td class="py-3 px-4 text-right">34.2</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-3 px-4 text-primary">PRJ-7743</td>
+                                <td class="py-3 px-4">Infrastructure Bridge</td>
+                                <td class="py-3 px-4">Coastal / Marine</td>
+                                <td class="py-3 px-4">Asia Pacific</td>
+                                <td class="py-3 px-4"><span
+                                        class="bg-tertiary/20 text-tertiary px-2 py-0.5 rounded text-xs border border-tertiary/20">Medium</span>
+                                </td>
+                                <td class="py-3 px-4 text-right">85.0</td>
+                                <td class="py-3 px-4 text-right">28.5</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-3 px-4 text-primary">PRJ-1104</td>
+                                <td class="py-3 px-4">Industrial Plant</td>
+                                <td class="py-3 px-4">Flatland / Arid</td>
+                                <td class="py-3 px-4">Middle East</td>
+                                <td class="py-3 px-4"><span
+                                        class="bg-error/20 text-error px-2 py-0.5 rounded text-xs border border-error/20">High</span>
+                                </td>
+                                <td class="py-3 px-4 text-right">310.2</td>
+                                <td class="py-3 px-4 text-right">45.0</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors bg-warning/5">
+                                <td class="py-3 px-4 text-primary">PRJ-3392</td>
+                                <td class="py-3 px-4">Residential Dev</td>
+                                <td class="py-3 px-4">Suburban</td>
+                                <td class="py-3 px-4">Europe West</td>
+                                <td class="py-3 px-4"><span
+                                        class="bg-secondary-container/20 text-secondary px-2 py-0.5 rounded text-xs border border-secondary/20">Low</span>
+                                </td>
+                                <td class="py-3 px-4 text-right text-tertiary border-b border-dashed border-tertiary/50"
+                                    title="Imputed Value">42.1*</td>
+                                <td class="py-3 px-4 text-right">18.4</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="py-3 px-4 text-primary">PRJ-5581</td>
+                                <td class="py-3 px-4">Data Center Facility</td>
+                                <td class="py-3 px-4">Urban Fringe</td>
+                                <td class="py-3 px-4">North America West</td>
+                                <td class="py-3 px-4"><span
+                                        class="bg-tertiary/20 text-tertiary px-2 py-0.5 rounded text-xs border border-tertiary/20">Medium</span>
+                                </td>
+                                <td class="py-3 px-4 text-right">195.8</td>
+                                <td class="py-3 px-4 text-right">22.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div class="p-3 border-t border-white/5 flex items-center justify-between bg-surface-container-high/30">
+                    <span class="font-body-md text-body-md text-on-surface-variant text-sm">Showing 1 to 5 of 2,984
+                        records</span>
+                    <div class="flex items-center gap-1">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-variant/50 transition-colors disabled:opacity-50"><span
+                                class="material-symbols-outlined text-sm">chevron_left</span></button>
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-medium text-sm">1</button>
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded text-on-surface hover:bg-surface-variant/50 transition-colors text-sm">2</button>
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded text-on-surface hover:bg-surface-variant/50 transition-colors text-sm">3</button>
+                        <span class="text-on-surface-variant px-1">...</span>
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded text-on-surface hover:bg-surface-variant/50 transition-colors text-sm">597</button>
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded text-on-surface hover:bg-surface-variant/50 transition-colors"><span
+                                class="material-symbols-outlined text-sm">chevron_right</span></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

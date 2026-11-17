@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interactive Visualizations - Project Pulse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#003824",
+                        "surface-container-low": "#191b23",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-error": "#690005",
+                        "surface-bright": "#363941",
+                        "secondary": "#4edea3",
+                        "on-tertiary": "#472a00",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "outline": "#8c909f",
+                        "surface-container-high": "#272a31",
+                        "on-primary": "#002e6a",
+                        "surface-container": "#1d2027",
+                        "inverse-on-surface": "#2e3038",
+                        "on-background": "#e1e2ec",
+                        "inverse-surface": "#e1e2ec",
+                        "on-primary-fixed": "#001a42",
+                        "primary-container": "#4d8eff",
+                        "surface-variant": "#32353c",
+                        "surface-container-highest": "#32353c",
+                        "on-secondary-fixed": "#002113",
+                        "surface-dim": "#10131a",
+                        "on-secondary-container": "#00311f",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#adc6ff",
+                        "primary": "#adc6ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary": "#ffb95f",
+                        "on-tertiary-container": "#3e2400",
+                        "outline-variant": "#424754",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-error-container": "#ffdad6",
+                        "background": "#10131a",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#e1e2ec",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface": "#10131a",
+                        "surface-container-lowest": "#0b0e15",
+                        "tertiary-container": "#ca8100",
+                        "on-primary-container": "#00285d",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-primary": "#005ac2",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary-container": "#00a572",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#005236"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "20px",
+                        "gutter": "16px",
+                        "container-padding": "24px",
+                        "sidebar-width": "260px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "code-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "title-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "code-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .blueprint-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        /* Chart Mockup Styles */
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s ease-in-out forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden blueprint-grid">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl font-body-md text-body-md flex justify-between items-center w-full px-container-padding h-16 sticky top-0 z-50 ml-[260px] max-w-[calc(100%-260px)] border-b border-white/5 transition-opacity opacity-100 hover:opacity-80">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface">Project Pulse</span>
+<div class="relative ml-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container border border-white/10 rounded-full py-1.5 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 text-sm transition-colors" placeholder="Search..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Analytics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">AI Tools</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="bg-transparent border border-white/10 text-white px-4 py-1.5 rounded-full hover:bg-white/5 transition-colors text-sm font-medium ml-2">
+                Notifications
+            </button>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full hover:bg-primary/90 transition-colors text-sm font-medium">
+                Optimize
+            </button>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-low font-title-md text-title-md border-r border-white/5 flex flex-col h-full w-[260px] fixed left-0 top-0 z-40 transition-transform transform scale-100">
+<div class="p-6 border-b border-white/5 flex flex-col items-start justify-center h-24">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface tracking-tight uppercase">PROJECT PULSE</h1>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider mt-1">Construction Intelligence</p>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">database</span>
+                Data Center
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+                Executive Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">insights</span>
+                Performance &amp; Drivers
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-primary font-bold border-l-4 border-primary bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">monitoring</span>
+                Interactive Visualizations
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">psychology</span>
+                AI Estimator
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                Smart Resource Optimizer
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">query_stats</span>
+                Sensitivity / What-If
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">compare_arrows</span>
+                Project Comparison
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant font-body-md text-body-md hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">assessment</span>
+                Business Report
+            </a>
+</nav>
+<div class="p-4 border-t border-white/5 flex flex-col gap-2">
+<button class="w-full bg-primary text-on-primary font-title-md text-title-md py-2.5 rounded-lg hover:bg-primary/90 transition-colors shadow-[0_0_15px_rgba(77,142,255,0.2)]">
+                Optimize Project
+            </button>
+<div class="mt-4 flex flex-col gap-1">
+<div class="flex items-center gap-2 text-on-surface-variant text-xs hover:text-on-surface transition-colors cursor-default px-2 py-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                    Dataset: 3k Projects
+                </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs hover:text-on-surface transition-colors cursor-default px-2 py-1">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+                    Model: Ready
+                </div>
+<a class="flex items-center gap-2 text-on-surface-variant text-xs hover:text-on-surface transition-colors px-2 py-1" href="#">
+<span class="material-symbols-outlined text-[16px]">settings</span>
+                    User Settings
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-[260px] p-container-padding min-h-screen">
+<!-- Page Header -->
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Interactive Visualizations</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Explore construction trends, distributions, and engineering relationships.</p>
+</div>
+<div class="grid grid-cols-12 gap-card-gap">
+<!-- Cost Trend: Large Line Chart -->
+<div class="col-span-12 bg-[#1A1D23] border border-white/5 rounded-xl p-6 relative overflow-hidden group">
+<!-- Subtle Gradient overlay for depth -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Planned vs Actual Project Cost</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-1">Quarterly Trajectory Analysis</p>
+</div>
+<div class="flex gap-4 items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Actual Cost</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-outline border border-white/20 border-dashed"></div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Planned Cost</span>
+</div>
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<div class="h-80 w-full relative">
+<!-- SVG Chart Mockup -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 300">
+<!-- Grid Lines -->
+<g class="stroke-white/5 stroke-[1]">
+<line x1="0" x2="1000" y1="50" y2="50"></line>
+<line x1="0" x2="1000" y1="100" y2="100"></line>
+<line x1="0" x2="1000" y1="150" y2="150"></line>
+<line x1="0" x2="1000" y1="200" y2="200"></line>
+<line x1="0" x2="1000" y1="250" y2="250"></line>
+</g>
+<!-- Planned Cost Line (Dashed) -->
+<path class="stroke-outline stroke-[2]" d="M 0 250 L 100 240 L 200 220 L 300 210 L 400 180 L 500 160 L 600 140 L 700 110 L 800 90 L 900 70 L 1000 50" fill="none" stroke-dasharray="8 4"></path>
+<!-- Actual Cost Line (Solid Primary) -->
+<path class="stroke-primary stroke-[3] chart-line" d="M 0 250 L 100 230 L 200 215 L 300 190 L 400 175 L 500 140 L 600 150 L 700 100 L 800 120 L 900 60 L 1000 30" fill="none"></path>
+<!-- Gradient Fill under Actual Line -->
+<path class="opacity-20" d="M 0 250 L 100 230 L 200 215 L 300 190 L 400 175 L 500 140 L 600 150 L 700 100 L 800 120 L 900 60 L 1000 30 L 1000 300 L 0 300 Z" fill="url(#cost-gradient)"></path>
+<defs>
+<lineargradient id="cost-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4d8eff"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</lineargradient>
+</defs>
+<!-- Data Points -->
+<circle class="stroke-primary stroke-2" cx="500" cy="140" fill="#10131a" r="4"></circle>
+<circle class="stroke-primary stroke-2" cx="700" cy="100" fill="#10131a" r="4"></circle>
+<circle class="stroke-primary stroke-2" cx="900" cy="60" fill="#10131a" r="4"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-code-sm text-on-surface-variant px-2 transform translate-y-6">
+<span>Q1 '22</span>
+<span>Q2 '22</span>
+<span>Q3 '22</span>
+<span>Q4 '22</span>
+<span>Q1 '23</span>
+<span>Q2 '23</span>
+<span>Q3 '23</span>
+<span>Q4 '23</span>
+<span>Q1 '24</span>
+<span>Q2 '24</span>
+<span>Q3 '24</span>
+</div>
+</div>
+</div>
+<!-- Category Analysis (2 columns) -->
+<!-- Left: Cost Overrun by Project Type (Bar Chart) -->
+<div class="col-span-12 md:col-span-6 bg-[#1A1D23] border border-white/5 rounded-xl p-6 relative">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Cost Overrun by Project Type</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-1">Percentage deviance from baseline</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">bar_chart</span>
+</div>
+<div class="flex flex-col gap-4 mt-8">
+<!-- Bar Item -->
+<div>
+<div class="flex justify-between text-code-sm mb-1">
+<span class="text-on-surface">Infrastructure</span>
+<span class="text-error font-mono">+18.4%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-error h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Bar Item -->
+<div>
+<div class="flex justify-between text-code-sm mb-1">
+<span class="text-on-surface">Commercial High-Rise</span>
+<span class="text-tertiary font-mono">+12.1%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-tertiary h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Bar Item -->
+<div>
+<div class="flex justify-between text-code-sm mb-1">
+<span class="text-on-surface">Residential Complex</span>
+<span class="text-primary font-mono">+8.7%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Bar Item -->
+<div>
+<div class="flex justify-between text-code-sm mb-1">
+<span class="text-on-surface">Industrial Facility</span>
+<span class="text-secondary font-mono">+4.2%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- Bar Item -->
+<div>
+<div class="flex justify-between text-code-sm mb-1">
+<span class="text-on-surface">Public Works (Parks)</span>
+<span class="text-secondary font-mono">+1.5%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Scatter plot 'Land Area vs Actual Cost' -->
+<div class="col-span-12 md:col-span-6 bg-[#1A1D23] border border-white/5 rounded-xl p-6 relative">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Land Area vs Actual Cost</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-1">Clustered by Terrain Type</p>
+</div>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 text-[10px] text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-primary"></div> Urban</span>
+<span class="inline-flex items-center gap-1 text-[10px] text-on-surface-variant"><div class="w-2 h-2 rounded-full bg-tertiary"></div> Suburban</span>
+</div>
+</div>
+<div class="h-64 w-full relative mt-4">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 250">
+<!-- Grid Lines -->
+<g class="stroke-white/5 stroke-[1]">
+<line x1="0" x2="400" y1="50" y2="50"></line>
+<line x1="0" x2="400" y1="100" y2="100"></line>
+<line x1="0" x2="400" y1="150" y2="150"></line>
+<line x1="0" x2="400" y1="200" y2="200"></line>
+<line x1="100" x2="100" y1="0" y2="250"></line>
+<line x1="200" x2="200" y1="0" y2="250"></line>
+<line x1="300" x2="300" y1="0" y2="250"></line>
+</g>
+<!-- Scatter Points (Primary - Urban) -->
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="40" cy="220" fill="#adc6ff" r="3"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="60" cy="190" fill="#adc6ff" r="4"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="90" cy="150" fill="#adc6ff" r="3.5"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="120" cy="180" fill="#adc6ff" r="5"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="150" cy="110" fill="#adc6ff" r="4"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="210" cy="90" fill="#adc6ff" r="6"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="280" cy="50" fill="#adc6ff" r="5"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="340" cy="30" fill="#adc6ff" r="7"></circle>
+<!-- Scatter Points (Tertiary - Suburban) -->
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="100" cy="230" fill="#ffb95f" r="3"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="140" cy="210" fill="#ffb95f" r="4"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="190" cy="170" fill="#ffb95f" r="3.5"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="240" cy="150" fill="#ffb95f" r="5"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="290" cy="120" fill="#ffb95f" r="4"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="350" cy="100" fill="#ffb95f" r="6"></circle>
+<circle class="opacity-70 hover:opacity-100 transition-opacity cursor-pointer" cx="380" cy="70" fill="#ffb95f" r="5"></circle>
+</svg>
+<!-- Axes Labels -->
+<div class="absolute -left-6 top-1/2 -rotate-90 text-[10px] text-on-surface-variant tracking-wider uppercase">Cost (M)</div>
+<div class="absolute bottom-[-20px] w-full text-center text-[10px] text-on-surface-variant tracking-wider uppercase">Land Area (Acres)</div>
+</div>
+</div>
+<!-- Labor vs Duration -->
+<div class="col-span-12 md:col-span-8 bg-[#1A1D23] border border-white/5 rounded-xl p-6 relative">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Labor Force vs Project Duration</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-1">Analyzing workforce efficiency scaling</p>
+</div>
+</div>
+<div class="h-72 w-full relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 600 280">
+<!-- Grid Lines -->
+<g class="stroke-white/5 stroke-[1]">
+<line x1="0" x2="600" y1="70" y2="70"></line>
+<line x1="0" x2="600" y1="140" y2="140"></line>
+<line x1="0" x2="600" y1="210" y2="210"></line>
+</g>
+<!-- Trend Line -->
+<path class="stroke-outline stroke-[2]" d="M 50 250 Q 200 150 550 100" fill="none" stroke-dasharray="6 4"></path>
+<!-- Scatter Points -->
+<g class="fill-primary opacity-60">
+<!-- High Duration, Low Labor -->
+<circle cx="60" cy="260" r="4"></circle>
+<circle cx="80" cy="240" r="3"></circle>
+<circle cx="100" cy="220" r="5"></circle>
+<circle cx="120" cy="250" r="4"></circle>
+<!-- Mid Range -->
+<circle cx="180" cy="180" r="4"></circle>
+<circle cx="210" cy="190" r="5"></circle>
+<circle cx="230" cy="160" r="3"></circle>
+<circle cx="270" cy="170" r="6"></circle>
+<circle cx="310" cy="140" r="4"></circle>
+<!-- High Labor, Lower Duration (Diminishing returns zone) -->
+<circle cx="380" cy="130" r="5"></circle>
+<circle cx="420" cy="125" r="4"></circle>
+<circle cx="460" cy="115" r="5"></circle>
+<circle cx="510" cy="110" r="3"></circle>
+<circle cx="540" cy="105" r="4"></circle>
+<circle cx="570" cy="100" r="6"></circle>
+</g>
+<!-- Annotation for Diminishing Returns -->
+<g class="transform translate-x-[420px] translate-y-[80px]">
+<rect class="stroke-white/10" fill="#272a31" height="40" rx="4" width="140" x="0" y="0"></rect>
+<text class="fill-white text-[10px] font-mono" x="10" y="16">Diminishing Returns</text>
+<text class="fill-outline text-[9px]" x="10" y="30">Efficiency loss &gt; 15%</text>
+<line class="stroke-white/30 stroke-[1]" x1="70" x2="50" y1="40" y2="60"></line>
+</g>
+</svg>
+<!-- Axes -->
+<div class="absolute -left-6 top-1/2 -rotate-90 text-[10px] text-on-surface-variant tracking-wider uppercase">Duration (Months)</div>
+<div class="absolute bottom-[-20px] w-full text-center text-[10px] text-on-surface-variant tracking-wider uppercase">Labor Count (FTE)</div>
+</div>
+</div>
+<!-- Overrun Distribution Histogram -->
+<div class="col-span-12 md:col-span-4 bg-[#1A1D23] border border-white/5 rounded-xl p-6 relative">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Overrun Distribution</h3>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-1">Frequency of budget deviance</p>
+</div>
+</div>
+<div class="h-72 w-full relative flex items-end justify-between gap-1 pb-6">
+<!-- Histogram Bars -->
+<div class="w-full bg-surface-container hover:bg-surface-variant transition-colors rounded-t-sm" style="height: 10%"></div>
+<div class="w-full bg-surface-container hover:bg-surface-variant transition-colors rounded-t-sm" style="height: 25%"></div>
+<div class="w-full bg-primary/40 hover:bg-primary/60 transition-colors rounded-t-sm border-t-2 border-primary relative" style="height: 60%">
+<!-- Median Marker -->
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-mono bg-primary/10 px-1 rounded">Median</div>
+</div>
+<div class="w-full bg-surface-container hover:bg-surface-variant transition-colors rounded-t-sm" style="height: 85%"></div>
+<div class="w-full bg-surface-container hover:bg-surface-variant transition-colors rounded-t-sm" style="height: 40%"></div>
+<!-- 10% Threshold Line -->
+<div class="absolute top-0 bottom-6 left-[60%] border-l border-dashed border-outline/50 z-10">
+<div class="absolute top-2 -left-10 text-[9px] text-outline bg-background/80 px-1 rounded">10% Thr.</div>
+</div>
+<div class="w-full bg-error/20 hover:bg-error/30 transition-colors rounded-t-sm border-t border-error/50" style="height: 20%"></div>
+<div class="w-full bg-error/40 hover:bg-error/50 transition-colors rounded-t-sm border-t border-error/70" style="height: 15%"></div>
+<div class="w-full bg-error/60 hover:bg-error/70 transition-colors rounded-t-sm border-t border-error relative" style="height: 8%">
+<!-- High Risk Marker -->
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-error font-mono bg-error/10 px-1 rounded whitespace-nowrap">High Risk</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-[10px] text-on-surface-variant">
+<span>-5%</span>
+<span>0%</span>
+<span>+15%</span>
+<span>+30%</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
